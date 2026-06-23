@@ -53,7 +53,7 @@ public class userService {
 
     public List<responseDTO> dashboard(String email) {
         users user=repo.findByEmail(email).orElseThrow();
-        return user.getQR().stream().map(qr->new responseDTO(qr.getId(), qr.getQR_URL())).toList();
+        return user.getQR().stream().map(qr->new responseDTO(qr.getId(), qr.getQR_URL(), qr.getType())).toList();
 
     }
 }

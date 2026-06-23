@@ -18,14 +18,6 @@ import java.util.List;
 public class userController {
     @Autowired
     private userService service;
-    @GetMapping("/login")
-    public String login(){
-        return "logins";
-    }
-    @GetMapping("/sign_up")
-    public String createAccount(){
-        return "sign_up";
-    }
     @PostMapping("/login")
     public ResponseEntity<?> login(
             @RequestBody loginDTO loginDTO){

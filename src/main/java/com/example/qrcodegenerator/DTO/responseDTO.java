@@ -12,5 +12,6 @@ public class responseDTO {
 
         private Long id;
         private String qrUrl;
+        private String type;
 
 }

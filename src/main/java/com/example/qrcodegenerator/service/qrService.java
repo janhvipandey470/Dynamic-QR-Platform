@@ -72,12 +72,14 @@ public class qrService {
             String message=(s.isBlank())?"":s;
             QREntity qr=new QREntity();
             qr.setText(s);
+            repo.save(qr);
             String dynamicUrl="http://localhost:8080/qr/" + qr.getId();
             byte[] qrImage=generateQRCode(dynamicUrl);
             Map uploadResult=cloudinary.uploader().upload(qrImage,ObjectUtils.emptyMap());
             String qrUrl=uploadResult.get("secure_url").toString();
             qr.setQR_URL(qrUrl);
             qr.setUser(user);
+            qr.setType("Text");
             repo.save(qr);
             System.out.println(qrUrl);
             return qr.getQR_URL();
@@ -105,6 +107,7 @@ public class qrService {
         qr.setQR_URL(qrUrl);
         qr.setUser(user);
         qr.setPublicId(publicId);
+        qr.setType("Image");
         repo.save(qr);
         return qr.getQR_URL();
     }
